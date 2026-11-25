@@ -1,0 +1,56 @@
+{
+  "name": "deborah-library-studio",
+  "productName": "DEBORAH Library Studio",
+  "version": "2.20.0",
+  "description": "Offline barcode library studio \u2014 catalog, circulation, gate tracker and OPAC.",
+  "main": "main.js",
+  "author": "Your Name",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "kiosk": "electron . --kiosk",
+    "dist": "electron-builder --win",
+    "dist:installer": "electron-builder --win nsis",
+    "dist:portable": "electron-builder --win portable",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.deborah.librarystudio",
+    "productName": "DEBORAH Library Studio",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "app/**/*",
+      "build/icon.png"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "${productName}-${version}-${target}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.education",
+      "artifactName": "${productName}-${version}-mac.${ext}"
+    }
+  }
+}
